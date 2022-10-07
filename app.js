@@ -1,18 +1,35 @@
 require('dotenv').config();
-// const { App } = require('@slack/bolt');
+const { App } = require('@slack/bolt');
+
 
 // Initializes your app with your bot token and signing secret
-// const app = new App({
-//   token: process.env.SLACK_BOT_TOKEN,
-//   signingSecret: process.env.SLACK_SIGNING_SECRET
-// });
+const app = new App({
+  token: process.env.SLACK_BOT_TOKEN,
+  signingSecret: process.env.SLACK_SIGNING_SECRET,
+//   socketMode: true,
+});
 
-console.log(process.env.SLACK_BOT_TOKEN);
-console.log(process.env.SLACK_SIGNING_SECRET);
+app.command("/condor", async ({command, ack, say}) => {
+    try {
+        await ack()
+        say("You have issued a condor")
+    } catch (err) {
+        console.error(err)
+    }
+})
 
-// (async () => {
-//   // Start your app
-//   await app.start(process.env.PORT || 3000);
+app.command("/turkey", async ({command, ack, say}) => {
+    try {
+        await ack()
+        say("You have issued a turkey")
+    } catch (err) {
+        console.error(err)
+    }
+})
 
-//   console.log('⚡️ Bolt app is running!');
-// })();
+(async () => {
+  // Start your app
+  await app.start(process.env.PORT || 3000);
+
+  console.log('⚡️ Bolt app is running!');
+})();
