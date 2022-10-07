@@ -58,6 +58,13 @@ db.addTurkey(
 
 console.log(db.database);
 
+app.command('/leaderboard', async ({ command, ack, respond }) => {
+  // Acknowledge command request
+  await ack();
+
+  await say(`:eagle: *Condor or Turkey LeaderBoard* :turkey:\nEfty :eagle::eagle:  \nSophie :eagle::eagle::turkey:\n Ross :eagle::turkey::turkey:`);
+});
+
 (async () => {
   // Start your app
   await app.start(process.env.PORT || 3000);
