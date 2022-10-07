@@ -1,5 +1,10 @@
-require('dotenv').config();
-const { App } = require('@slack/bolt');
+// Read env variables
+require("dotenv").config();
+
+// Import database
+const db = require("./database");
+
+const { App } = require("@slack/bolt");
 
 
 // Initializes your app with your bot token and signing secret
@@ -27,9 +32,35 @@ app.command("/turkey", async ({command, ack, say}) => {
     }
 })
 
+// Example please remove
+db.addCondor(
+  { id: "user1", name: "first user" },
+  {
+    user: "user2",
+    message: "lorem ipsum dolor sit amet",
+  }
+)
+db.addCondor(
+  { id: "user1", name: "first user" },
+  {
+    user: "user2",
+    message: "lorem ipsum dolor sit amet second review",
+  }
+)
+
+db.addTurkey(
+  { id: "user1", name: "first user" },
+  {
+    user: "user2",
+    message: "lorem ipsum dolor sit amet second review",
+  }
+)
+
+console.log(db.database);
+
 (async () => {
   // Start your app
   await app.start(process.env.PORT || 3000);
 
-  console.log('⚡️ Bolt app is running!');
+  console.log("⚡️ Bolt app is running!");
 })();
